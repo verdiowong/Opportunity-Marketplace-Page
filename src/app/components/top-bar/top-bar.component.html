@@ -1,0 +1,54 @@
+<div class="flex items-center justify-between bg-black text-white font-poppins w-full h-fit px-24 py-4 border-t border-slate-800">
+    <div class="flex items-center space-x-3">
+        <i class="fas fa-search text-gray-400"></i>
+        <select class="bg-black border-none text-white focus:ring-0 focus:outline-none cursor-pointer w-40">
+          <option value="" disabled selected>Role</option>
+          <option>Designer</option>
+          <option>Developer</option>
+          <option>Product Manager</option>
+        </select>
+    </div>
+
+    <div class="flex items-center space-x-3">
+        <i class="fas fa-map-marker-alt text-gray-400"></i>
+        <select class="bg-black border-none text-white focus:ring-0 focus:outline-none cursor-pointer w-40">
+          <option value="" disabled selected>Work Location</option>
+          <option>Worldwide</option>
+          <option>Local (Singapore)</option>
+        </select>
+    </div>
+
+    <div class="flex items-center space-x-3">
+        <i class="fas fa-briefcase text-gray-400"></i>
+        <select class="bg-black border-none text-white focus:ring-0 focus:outline-none cursor-pointer w-40">
+          <option value="" disabled selected>Experience</option>
+          <option>1-2 Years</option>
+          <option>3-5 Years</option>
+          <option>5+ Years</option>
+        </select>
+    </div>
+
+    <div class="flex items-center space-x-3">
+        <i class="fas fa-calendar-alt text-gray-400"></i>
+        <select class="bg-black border-none text-white focus:ring-0 focus:outline-none cursor-pointer w-40">
+          <option value="" disabled selected>Frequency</option>
+          <option>Per month</option>
+          <option>Per year</option>
+          <option>Per week</option>
+        </select>
+    </div>
+
+    <div class="flex flex-col gap-y-4 items-center space-x-3 w-40">
+        <span class="text-white">Salary range</span>
+        <div class="flex space-x-3">
+          <div class="flex flex-col items-center">
+              <label class="text-gray-400 text-sm">Min</label>
+              <input type="number" placeholder="0" step="500" class="bg-black border border-gray-400 text-white rounded p-2 w-20 focus:ring-0 focus:outline-none">
+          </div>
+          <div class="flex flex-col items-center">
+              <label class="text-gray-400 text-sm">Max</label>
+              <input type="number" placeholder="10000" step="500" class="bg-black border border-gray-400 text-white rounded p-2 w-20 focus:ring-0 focus:outline-none">
+          </div>
+      </div>
+    </div>
+</div>

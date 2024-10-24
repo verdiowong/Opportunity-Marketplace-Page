@@ -1,0 +1,78 @@
+<div class="p-8 h-full bg-gray-100">
+  <!-- Title and Filter Section and Sort -->
+  <div class="flex flex-row items-center mb-6">
+    <h1 class="text-3xl font-extrabold mr-4">Recommended jobs</h1>
+    <span class="text-lg border font-bold border-black py-2 px-4 rounded-full"
+      >386</span
+    >
+    <div class="flex flex-grow justify-end items-center space-x-4">
+      <span class="text-sm text-gray-500 mr-1"
+        >Sort by: <span class="text-black font-bold">Last updated</span></span
+      >
+      <button (click)="toggleDropdown()" class="relative">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
+          />
+        </svg>
+      </button>
+      <!-- Dropdown menu -->
+      <div
+        *ngIf="dropdownOpen"
+        class="absolute mt-52 w-48 bg-white border border-gray-300 rounded shadow-lg"
+      >
+        <ul class="py-1">
+          <li
+            class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+            (click)="sortBy('Last updated')"
+          >
+            Last updated
+          </li>
+          <li
+            class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+            (click)="sortBy('Salary')"
+          >
+            Salary
+          </li>
+          <li
+            class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+            (click)="sortBy('Job title')"
+          >
+            Job title
+          </li>
+          <li
+            class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+            (click)="sortBy('Location')"
+          >
+            Location
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jobs Grid -->
+  <div class="grid grid-cols-3 gap-8">
+    <app-opportunity-card
+      *ngFor="let job of filteredJobs"
+      [date]="job.date"
+      [company]="job.company"
+      [jobTitle]="job.jobTitle"
+      [tags]="job.tags"
+      [salary]="job.salary"
+      [location]="job.location"
+      [bgColor]="job.bgColor"
+      [logoSvgContent]="job.logoSvgContent"
+    >
+    </app-opportunity-card>
+  </div>
+</div>

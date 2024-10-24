@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-top-bar',
@@ -7,9 +7,13 @@ import { Component, AfterViewInit } from '@angular/core';
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss']
 })
-export class TopBarComponent implements AfterViewInit {
+export class TopBarComponent{
 
-  ngAfterViewInit() {
-    
+  @Output() toggleSidebar = new EventEmitter<void>();
+
+  // This function will be called when the filter icon is clicked
+  onToggleSidebar(): void {
+    // Emit the toggleSidebar event to the parent component
+    this.toggleSidebar.emit();
   }
 }

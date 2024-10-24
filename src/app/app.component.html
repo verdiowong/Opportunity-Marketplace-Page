@@ -1,11 +1,19 @@
-<div class="flex flex-col h-screen">
+<div class="flex flex-col h-screen font-poppins">
   <app-header></app-header>
-  <app-top-bar></app-top-bar>
+  <app-top-bar (toggleSidebar)="toggleSidebar()"></app-top-bar>
 
-  <div class="flex flex-grow">
-    <app-side-bar class="min-w-fit h-full"></app-side-bar>
-    <div class="flex-grow bg-gray-50">
-      <!-- Main content will go here -->
+  <div class="flex flex-grow bg-gray-t0">
+    <app-side-bar
+      class="h-full transition-transform duration-500 ease-in-out"
+      [ngClass]="{ 'min-w-fit': isSidebarVisible, 'hidden': !isSidebarVisible }"
+      (toggle)="toggleSidebar()"
+      (tagsChanged)="onTagsChanged($event)"
+    ></app-side-bar>
+    <div
+      class="flex-grow transition-width duration-500 ease-in-out delay-150"
+      [ngClass]="{ 'w-full': !isSidebarVisible }"
+    >
+    <app-content [selectedTags]="selectedTags"></app-content>
     </div>
   </div>
 </div>

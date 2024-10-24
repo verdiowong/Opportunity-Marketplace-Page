@@ -1,6 +1,7 @@
 <div class="flex flex-col h-screen font-poppins">
   <app-header></app-header>
-  <app-top-bar (toggleSidebar)="toggleSidebar()"></app-top-bar>
+  <app-top-bar (toggleSidebar)="toggleSidebar()" (roleSelected)="onRoleSelected($event)"
+  (locationSelected)="onLocationSelected($event)"></app-top-bar>
 
   <div class="flex flex-grow bg-gray-t0">
     <app-side-bar
@@ -13,7 +14,11 @@
       class="flex-grow transition-width duration-500 ease-in-out delay-150"
       [ngClass]="{ 'w-full': !isSidebarVisible }"
     >
-    <app-content [selectedTags]="selectedTags"></app-content>
+    <app-content
+    [selectedTags]="selectedTags"
+    [selectedRole]="selectedRole"
+    [selectedLocation]="selectedLocation"
+    ></app-content>
     </div>
   </div>
 </div>

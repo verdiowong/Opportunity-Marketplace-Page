@@ -19,6 +19,19 @@ export class AppComponent {
   // Add the isSidebarVisible property here
   isSidebarVisible: boolean = true;
 
+  selectedRole: string = '';  // Role selected from the top bar
+  selectedLocation: string = '';  // Location selected from the top bar
+
+  // Method to handle role selection from the top bar
+  onRoleSelected(role: string) {
+    this.selectedRole = role;
+  }
+
+  // Method to handle location selection from the top bar
+  onLocationSelected(location: string) {
+    this.selectedLocation = location;
+  }
+
   // This function will toggle the sidebar visibility
   toggleSidebar(): void {
     this.isSidebarVisible = !this.isSidebarVisible;

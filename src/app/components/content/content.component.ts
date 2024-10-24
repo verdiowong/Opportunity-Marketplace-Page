@@ -2,9 +2,7 @@ import {
   Component,
   HostListener,
   Input,
-  OnChanges,
-  QueryList,
-  ViewChildren,
+  OnChanges
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OpportunityCardComponent } from '../opportunity-card/opportunity-card.component';
@@ -18,6 +16,10 @@ import { OpportunityCardComponent } from '../opportunity-card/opportunity-card.c
 })
 export class ContentComponent implements OnChanges {
   @Input() selectedTags: string[] = [];
+  @Input() selectedRole: string;
+  @Input() selectedLocation: string;
+
+
 
   // Company SVG icons
   googleSvgContent: string = `
@@ -144,6 +146,13 @@ export class ContentComponent implements OnChanges {
 
   filteredJobs = this.jobs;
 
+  onRoleSelected(role: string) {
+    this.selectedRole = role;
+  }
+  onLocationSelected(location: string) {
+    this.selectedLocation = location;
+  }
+
   ngOnChanges(): void {
     // console.log('Selected tags have changed:', this.selectedTags);
     this.filterJobs();
@@ -151,13 +160,11 @@ export class ContentComponent implements OnChanges {
 
   // Filter jobs based on selected tags
   filterJobs(): void {
-    // console.log('Selected Tags:', this.selectedTags); // Check current selected tags
-
+    // If no tags are selected, show all jobs
     if (this.selectedTags.length === 0) {
-      // Show all jobs if no tags are selected
       this.filteredJobs = this.jobs;
     } else {
-      // Filter jobs where at least one tag matches
+      // Filter jobs where at least one tag matches the selected tags
       this.filteredJobs = this.jobs.filter((job) => {
         const hasMatchingTag = this.selectedTags.some((selectedTag) =>
           job.tags.some(
@@ -165,13 +172,28 @@ export class ContentComponent implements OnChanges {
               jobTag.trim().toLowerCase() === selectedTag.trim().toLowerCase()
           )
         );
-        // console.log(`Job: ${job.jobTitle}, Matching: ${hasMatchingTag}`); // Log which jobs match
-        return hasMatchingTag;
+  
+        // Add filtering based on role if a role is selected
+        const roleMatch = !this.selectedRole || job.jobTitle.includes(this.selectedRole);
+  
+        // Add filtering based on location if a location is selected
+        const locationMatch = !this.selectedLocation || job.location === this.selectedLocation;
+  
+        // Return true if all conditions (tags, role, and location) match
+        return hasMatchingTag && roleMatch && locationMatch;
       });
     }
-
-    // console.log('Filtered Jobs:', this.filteredJobs); // Log the final filtered jobs array
+  
+    // If no tags are selected but we have a selected role or location, apply those filters
+    if (this.selectedTags.length === 0) {
+      this.filteredJobs = this.jobs.filter((job) => {
+        const roleMatch = !this.selectedRole || job.jobTitle.includes(this.selectedRole);
+        const locationMatch = !this.selectedLocation || job.location === this.selectedLocation;
+        return roleMatch && locationMatch;
+      });
+    }
   }
+
 
   dropdownOpen = false;
   sortOption = 'Last updated';

@@ -11,10 +11,10 @@
       xmlns="http://www.w3.org/2000/svg"
       (click)="onToggleSidebar()"
     >
-    <path
-      d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
-    />
-  </svg>
+      <path
+        d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
+      />
+    </svg>
   </div>
   <div class="flex items-center space-x-3">
     <svg
@@ -33,12 +33,13 @@
     </svg>
     <i class="fas fa-search text-gray-400"></i>
     <select
+      (change)="onRoleChange($event)"
       class="bg-black border-none text-white focus:ring-0 focus:outline-none cursor-pointer w-40"
     >
       <option value="" disabled selected>Role</option>
-      <option>UI/UX Designer</option>
-      <option>Graphic Designer</option>
-      <option>Motion Designer</option>
+      <option value="UI/UX Designer">UI/UX Designer</option>
+      <option value="Graphic Designer">Graphic Designer</option>
+      <option value="Motion Designer">Motion Designer</option>
     </select>
   </div>
   <div class="separator"></div>
@@ -64,12 +65,13 @@
     </svg>
     <i class="fas fa-map-marker-alt text-gray-400"></i>
     <select
+      (change)="onLocationChange($event)"
       class="bg-black border-none text-white focus:ring-0 focus:outline-none cursor-pointer w-40"
     >
       <option value="" disabled selected>Location</option>
-      <option>California, CA</option>
-      <option>New York, NY</option>
-      <option>San Francisco, CA</option>
+      <option value="New York, NY">New York, NY</option>
+      <option value="California, CA">California, CA</option>
+      <option value="San Francisco, CA">San Francisco, CA</option>
     </select>
   </div>
   <div class="separator"></div>

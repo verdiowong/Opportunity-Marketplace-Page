@@ -1,1 +1,52 @@
-<p>opportunity-card works!</p>
+<!-- Job Card Component -->
+<div *ngIf="isVisible" class="job-card rounded-3xl shadow-md p-6 flex flex-col space-y-4 border transition ease-in-out delay-150 hover:translate-y-1 hover:scale-105">
+  <div class="rounded-3xl p-4" [ngStyle]="{ 'background-color': bgColor }">
+    <div class="flex justify-between items-start">
+      <span
+        class="text-sm text-black rounded-full px-3 py-2 bg-white m-1 mb-4"
+        >{{ date }}</span
+      >
+      <button class="bg-white rounded-full p-2 transition ease-in-out delay-150 hover:translate-y-1 hover:scale-110" (click)="toggleBookmark()">
+        <!-- Bookmark Icon -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          [attr.fill]="isBookmarked ? 'black' : 'none'"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6 transition-all duration-300"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="text-lg m-1">{{ company }}</div>
+    <div class="flex flex-row">
+      <div class="text-2xl font-semibold m-1 w-48 mb-24">{{ jobTitle }}</div>
+      <div class="flex flex-auto justify-end size-16" *ngIf="logoSvgContent" [innerHTML]="getSafeHtml()"></div>
+    </div>
+    <div class="flex flex-wrap gap-2 w-11/12">
+      <!-- Iterate over tags dynamically -->
+      <span
+        *ngFor="let tag of tags"
+        class="px-2 py-1 bg-transparent border border-black rounded-full text-sm"
+        >{{ tag }}</span
+      >
+    </div>
+  </div>
+  <div class="mt-4 flex flex-row">
+    <div class="ml-4 flex flex-col flex-auto">
+      <div class="text-xl font-bold">{{ salary }}</div>
+      <div class="text-sm text-gray-500">{{ location }}</div>
+    </div>
+    <div class="justify-end transition ease-in-out delay-100 hover:scale-110">
+      <button class="py-2 px-4 mr-2 bg-black text-white rounded-full">
+        Details
+      </button>
+    </div>
+  </div>
+</div>

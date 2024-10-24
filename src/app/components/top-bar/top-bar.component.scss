@@ -1,4 +1,6 @@
-#salaryRangeSlider {
-  width: 100%;
-  margin-top: 10px;
+.separator {
+  width: 1px;
+  height: 48px; /* Adjust height to make it longer */
+  background-color: #555; /* Separator color */
+  margin: 0 10px; /* Adds space around the separator */
 }
